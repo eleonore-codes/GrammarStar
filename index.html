@@ -7,126 +7,227 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Grammar Star">
 <meta name="theme-color" content="#0f1b2d">
+<title>🌟 Grammar Star · Camden Town 6</title>
 <link rel="apple-touch-icon" href="icon-180.png">
 <link rel="manifest" href="manifest.json">
-<title>🌟 Grammar Star</title>
 <style>
 :root{--sky:#0f1b2d;--card:#162238;--accent:#f5a623;--green:#2ecc71;--red:#e74c3c;--text:#f0f4ff;--muted:#7a9cc0;}
 *{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:'Segoe UI','Helvetica Neue',Arial,sans-serif;background:var(--sky);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:20px 16px;}
-body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(1px 1px at 10% 15%,rgba(255,255,255,.6) 0%,transparent 100%),radial-gradient(1.5px 1.5px at 50% 10%,rgba(255,255,255,.7) 0%,transparent 100%),radial-gradient(1px 1px at 85% 60%,rgba(255,255,255,.4) 0%,transparent 100%),radial-gradient(1px 1px at 40% 80%,rgba(255,255,255,.5) 0%,transparent 100%);pointer-events:none;z-index:0;}
+body{font-family:'Segoe UI','Helvetica Neue',Arial,sans-serif;background:var(--sky);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:20px 16px;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(1px 1px at 10% 15%,rgba(255,255,255,.6) 0%,transparent 100%),radial-gradient(1.5px 1.5px at 50% 10%,rgba(255,255,255,.7) 0%,transparent 100%),radial-gradient(1px 1px at 85% 60%,rgba(255,255,255,.4) 0%,transparent 100%),radial-gradient(1px 1px at 40% 80%,rgba(255,255,255,.5) 0%,transparent 100%),radial-gradient(1px 1px at 70% 35%,rgba(255,255,255,.4) 0%,transparent 100%);pointer-events:none;z-index:0;}
 .app{position:relative;z-index:1;width:100%;max-width:500px;display:flex;flex-direction:column;gap:16px;}
-.header{text-align:center;padding:20px 0 10px;}
-.header h1{font-family:'Trebuchet MS',sans-serif;font-size:2.4rem;font-weight:900;color:var(--accent);text-shadow:0 0 24px rgba(245,166,35,.4);}
-.header .sub{color:var(--muted);font-size:.85rem;margin-top:6px;}
-.section-title{font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--muted);padding:0 2px;}
-.book-cards{display:flex;flex-direction:column;gap:12px;}
-.book-card{border-radius:20px;padding:20px 20px;cursor:pointer;transition:all .2s ease;display:flex;align-items:center;gap:16px;text-decoration:none;color:inherit;position:relative;overflow:hidden;}
-.book-card:hover,.book-card:active{transform:translateY(-3px);}
-.book-ct5{background:linear-gradient(135deg,#1a2e4a,#162238);border:1px solid rgba(52,152,219,.3);}
-.book-ct5:hover{border-color:rgba(52,152,219,.6);}
-.book-ct6{background:linear-gradient(135deg,#1a2e1a,#162238);border:1px solid rgba(46,204,113,.3);}
-.book-ct6:hover{border-color:rgba(46,204,113,.6);}
-.book-ct7{background:linear-gradient(135deg,#2e1a2e,#162238);border:1px solid rgba(155,89,182,.3);}
-.book-ct7:hover{border-color:rgba(155,89,182,.6);}
-.book-icon{font-size:2.8rem;flex-shrink:0;}
-.book-info{flex:1;}
-.book-info h2{font-family:'Trebuchet MS',sans-serif;font-size:1.3rem;font-weight:900;margin-bottom:4px;}
-.book-ct5 .book-info h2{color:#3498db;}
-.book-ct6 .book-info h2{color:var(--green);}
-.book-ct7 .book-info h2{color:#c39bd3;}
-.book-info .grade{font-size:.78rem;color:var(--muted);margin-bottom:6px;}
-.book-info .topics{font-size:.73rem;color:var(--muted);line-height:1.5;}
-.book-arrow{font-size:1.4rem;color:var(--muted);flex-shrink:0;}
-.book-badge{position:absolute;top:12px;right:12px;font-size:.65rem;font-weight:800;padding:3px 9px;border-radius:99px;}
-.badge-ready{background:rgba(46,204,113,.2);color:var(--green);}
+
+/* Header */
+.header{text-align:center;padding:16px 0 8px;}
+.header h1{font-family:'Trebuchet MS','Segoe UI',sans-serif;font-size:2.2rem;font-weight:900;color:var(--accent);text-shadow:0 0 24px rgba(245,166,35,.4);letter-spacing:1px;}
+.header .sub{color:var(--muted);font-size:.85rem;margin-top:4px;}
+.header .book{display:inline-block;background:rgba(245,166,35,.1);border:1px solid rgba(245,166,35,.2);border-radius:99px;padding:4px 14px;font-size:.78rem;color:var(--accent);font-weight:700;margin-top:8px;}
+
+/* Progress overview */
+.progress-overview{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:14px 16px;display:flex;gap:16px;align-items:center;}
+.progress-circle{position:relative;width:64px;height:64px;flex-shrink:0;}
+.progress-circle svg{transform:rotate(-90deg);}
+.progress-circle .pct{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Trebuchet MS',sans-serif;font-size:1.1rem;font-weight:900;color:var(--accent);}
+.progress-text h3{font-size:.95rem;font-weight:800;margin-bottom:3px;}
+.progress-text p{font-size:.78rem;color:var(--muted);line-height:1.5;}
+
+/* Section title */
+.section-title{font-family:'Trebuchet MS',sans-serif;font-size:.8rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--muted);padding:0 2px;}
+
+/* Unit cards */
+.units{display:flex;flex-direction:column;gap:10px;}
+.unit-card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:16px 18px;cursor:pointer;transition:all .2s ease;display:flex;align-items:center;gap:14px;text-decoration:none;color:inherit;}
+.unit-card:hover,.unit-card:active{border-color:var(--accent);background:#1d3050;transform:translateY(-2px);}
+.unit-card.locked{opacity:.45;cursor:not-allowed;pointer-events:none;}
+.unit-card.done{border-color:rgba(46,204,113,.25);background:rgba(46,204,113,.04);}
+.unit-card.available{border-color:rgba(245,166,35,.2);}
+.unit-icon{font-size:2rem;flex-shrink:0;width:44px;text-align:center;}
+.unit-info{flex:1;}
+.unit-info h3{font-size:.95rem;font-weight:800;margin-bottom:2px;}
+.unit-info .topics{font-size:.73rem;color:var(--muted);line-height:1.4;}
+.unit-meta{display:flex;flex-direction:column;align-items:flex-end;gap:4px;}
+.unit-badge{font-size:.68rem;font-weight:800;padding:3px 10px;border-radius:99px;white-space:nowrap;}
+.badge-done{background:rgba(46,204,113,.15);color:var(--green);}
+.badge-available{background:rgba(245,166,35,.15);color:var(--accent);}
 .badge-coming{background:rgba(255,255,255,.06);color:var(--muted);}
-.badge-summer{background:rgba(155,89,182,.2);color:#c39bd3;}
-.info-card{background:var(--card);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:14px 16px;font-size:.82rem;line-height:1.6;color:var(--muted);}
-.info-card strong{color:var(--text);}
-.footer{text-align:center;font-size:.72rem;color:var(--muted);padding:8px 0 20px;line-height:1.8;}
+.unit-progress-bar{width:60px;height:4px;background:rgba(255,255,255,.08);border-radius:99px;overflow:hidden;}
+.unit-progress-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--accent),#ffcc44);}
+
+/* Streak card */
+.streak-card{background:linear-gradient(135deg,#1a0a2e,#0f1b2d);border:1px solid rgba(155,89,182,.3);border-radius:18px;padding:16px 18px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:14px;}
+.streak-card:hover{border-color:rgba(155,89,182,.6);transform:translateY(-2px);}
+.streak-icon{font-size:2rem;flex-shrink:0;}
+.streak-info h3{font-size:.95rem;font-weight:800;color:#c39bd3;margin-bottom:2px;}
+.streak-info p{font-size:.75rem;color:var(--muted);}
+.streak-badge{background:rgba(155,89,182,.2);color:#c39bd3;font-size:.68rem;font-weight:800;padding:3px 10px;border-radius:99px;}
+
+/* Footer */
+.footer{text-align:center;font-size:.72rem;color:var(--muted);padding:8px 0 16px;line-height:1.8;}
 .footer a{color:var(--accent);text-decoration:none;}
+
+/* Confetti */
 .confetti-piece{position:fixed;width:8px;height:8px;border-radius:2px;animation:confettiFall linear forwards;pointer-events:none;z-index:999;}
 @keyframes confettiFall{0%{transform:translateY(-20px) rotate(0deg);opacity:1;}100%{transform:translateY(100vh) rotate(720deg);opacity:0;}}
 </style>
 </head>
 <body>
-<div class="app">
+<div class="app"><div style="padding:8px 0 4px;"><a href="../index.html" style="color:var(--muted);font-size:.78rem;font-weight:700;text-decoration:none;">← Alle Bücher</a></div>
 
   <div class="header">
     <h1>🌟 Grammar Star</h1>
-    <div class="sub">Camden Town · Gymnasium · Kimi Antonelli 🏎️ · Baby Monster 🎤 · Keyboard 🎹 · Violine 🎻</div>
+    <div class="sub">Camden Town 6 · Gymnasium</div>
+    <div class="book">📚 Kimi Antonelli · Baby Monster · 🎹🎻</div>
   </div>
 
-  <div class="section-title">📚 Wähle dein Buch</div>
+  <!-- Overall progress -->
+  <div class="progress-overview">
+    <div class="progress-circle">
+      <svg width="64" height="64" viewBox="0 0 64 64">
+        <circle cx="32" cy="32" r="26" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="6"/>
+        <circle id="progressCircle" cx="32" cy="32" r="26" fill="none" stroke="#f5a623" stroke-width="6"
+          stroke-dasharray="163.4" stroke-dashoffset="163.4" stroke-linecap="round" style="transition:stroke-dashoffset .8s ease;"/>
+      </svg>
+      <div class="pct" id="overallPct">0%</div>
+    </div>
+    <div class="progress-text">
+      <h3>Dein Gesamtfortschritt</h3>
+      <p id="progressDesc">Wähle ein Thema und leg los!<br>Jede Einheit bringt dich weiter. 💛</p>
+    </div>
+  </div>
 
-  <div class="book-cards">
+  <div class="section-title">📖 Camden Town 6 — Units</div>
 
-    <a class="book-card book-ct5" href="ct5/index.html">
-      <div class="book-icon">5️⃣</div>
-      <div class="book-info">
-        <h2>Camden Town 5</h2>
-        <div class="grade">5. Klasse Gymnasium</div>
-        <div class="topics">Simple Present · Past · Modal Verbs · Future · und mehr</div>
+  <!-- Unit cards -->
+  <div class="units" id="unitList">
+
+    <a class="unit-card available" href="unit5.html">
+      <div class="unit-icon">5️⃣</div>
+      <div class="unit-info">
+        <h3>Unit 5</h3>
+        <div class="topics">Question Tags · Possessive Pronouns</div>
       </div>
-      <div class="book-arrow">→</div>
-      <div class="book-badge badge-coming" id="ct5badge">🔒 Coming Soon</div>
+      <div class="unit-meta">
+        <div class="unit-badge badge-available">🎯 Üben</div>
+        <div class="unit-progress-bar"><div class="unit-progress-fill" id="prog5" style="width:0%"></div></div>
+      </div>
     </a>
 
-    <a class="book-card book-ct6" href="ct6/index.html">
-      <div class="book-icon">6️⃣</div>
-      <div class="book-info">
-        <h2>Camden Town 6</h2>
-        <div class="grade">6. Klasse Gymnasium · ✅ Vollständig</div>
-        <div class="topics">Units 1–6 · 6 Themengebiete · Alle Übungstypen</div>
+    <a class="unit-card available" href="unit6.html">
+      <div class="unit-icon">6️⃣</div>
+      <div class="unit-info">
+        <h3>Unit 6 — Test ✅</h3>
+        <div class="topics">Modal Verbs · Substitute Forms · Conditional I · Simple Past vs Present Perfect · Adverbs · Diary Writing</div>
       </div>
-      <div class="book-arrow">→</div>
-      <div class="book-badge badge-ready">✅ Bereit</div>
+      <div class="unit-meta">
+        <div class="unit-badge badge-available">🎯 Üben</div>
+        <div class="unit-progress-bar"><div class="unit-progress-fill" id="prog6" style="width:0%"></div></div>
+      </div>
     </a>
 
-    <a class="book-card book-ct7" href="ct7/index.html">
-      <div class="book-icon">7️⃣</div>
-      <div class="book-info">
-        <h2>Camden Town 7</h2>
-        <div class="grade">7. Klasse Gymnasium · Sommerferien-Vorbereitung</div>
-        <div class="topics">Kommt bald — perfekt für die Ferien vor Klasse 7</div>
+    <a class="unit-card available" href="unit4.html">
+      <div class="unit-icon">4️⃣</div>
+      <div class="unit-info">
+        <h3>Unit 4</h3>
+        <div class="topics">Present Perfect · have/has · already · just · never · since</div>
       </div>
-      <div class="book-arrow">→</div>
-      <div class="book-badge badge-summer">☀️ Sommer</div>
+      <div class="unit-meta">
+        <div class="unit-badge badge-available">🎯 Üben</div>
+        <div class="unit-progress-bar"><div class="unit-progress-fill" id="prog4" style="width:0%"></div></div>
+      </div>
+    </a>
+
+    <a class="unit-card available" href="unit3.html">
+      <div class="unit-icon">3️⃣</div>
+      <div class="unit-info">
+        <h3>Unit 3</h3>
+        <div class="topics">Going to Future · Quantifiers · Comparison of Adjectives</div>
+      </div>
+      <div class="unit-meta">
+        <div class="unit-badge badge-available">🎯 Üben</div>
+        <div class="unit-progress-bar"><div class="unit-progress-fill" id="prog3" style="width:0%"></div></div>
+      </div>
+    </a>
+
+    <a class="unit-card available" href="unit2.html">
+      <div class="unit-icon">2️⃣</div>
+      <div class="unit-info">
+        <h3>Unit 2</h3>
+        <div class="topics">Simple Past · Modal Verbs · may/may not</div>
+      </div>
+      <div class="unit-meta">
+        <div class="unit-badge badge-available">🎯 Üben</div>
+        <div class="unit-progress-bar"><div class="unit-progress-fill" id="prog2" style="width:0%"></div></div>
+      </div>
+    </a>
+
+    <a class="unit-card available" href="unit1.html">
+      <div class="unit-icon">1️⃣</div>
+      <div class="unit-info">
+        <h3>Unit 1</h3>
+        <div class="topics">Simple Present · Present Progressive</div>
+      </div>
+      <div class="unit-meta">
+        <div class="unit-badge badge-available">🎯 Üben</div>
+        <div class="unit-progress-bar"><div class="unit-progress-fill" id="prog1" style="width:0%"></div></div>
+      </div>
     </a>
 
   </div>
 
-  <div class="info-card">
-    🏎️ <strong>Personalisiert für dich:</strong> Kimi Antonelli, Baby Monster, Keyboard & Violine — alle Grammatikaufgaben mit deinen Lieblingsthemen.<br><br>
-    🎯 <strong>6 Übungstypen:</strong> Puzzle · Fehler finden · Quiz · True/False · Lückentext · Match Pairs<br><br>
-    📊 <strong>Dein Fortschritt</strong> wird pro Buch gespeichert.
+  <!-- Streak Challenge -->
+  <div class="streak-card" onclick="window.location.href='unit6.html#streak'">
+    <div class="streak-icon">🏆</div>
+    <div class="streak-info">
+      <h3>Streak Challenge</h3>
+      <p>Alle verfügbaren Themen gemischt</p>
+    </div>
+    <div class="streak-badge">🔥 Los!</div>
   </div>
 
   <div class="footer">
-    Grammar Star · Camden Town · Gymnasium<br>
+    Grammar Star · Camden Town 6 · Gymnasium<br>
     <a href="https://github.com/eleonore-codes/GrammarStar">github.com/eleonore-codes/GrammarStar</a>
   </div>
 
 </div>
 <script>
-// Check localStorage for any CT5/CT7 progress
-try {
-  const ct6done = parseInt(localStorage.getItem('ct6_done') || '0');
-  if(ct6done > 0) {
-    // Could show progress here
-  }
-} catch(e) {}
+// Read progress from localStorage
+const units = {5:'unit5', 6:'unit6'};
+let totalDone = 0, totalTopics = 0;
 
-// Fun confetti on load
-const colors = ['#f5a623','#2ecc71','#3498db','#9b59b6'];
-setTimeout(() => {
-  for(let i=0;i<15;i++){
+// Unit 6 has 6 topics, Unit 5 has 2 topics
+const topicCounts = {unit1:2, unit2:2, unit3:2, unit4:1, unit5:2, unit6:6};
+
+Object.entries(topicCounts).forEach(([unit, count]) => {
+  totalTopics += count;
+  try {
+    const done = parseInt(localStorage.getItem(unit + '_done') || '0');
+    totalDone += done;
+    const unitNum = unit.replace('unit','');
+    const bar = document.getElementById('prog' + unitNum);
+    if(bar) bar.style.width = (done/count*100) + '%';
+  } catch(e) {}
+});
+
+// Update overall circle
+const pct = totalTopics > 0 ? Math.round(totalDone/totalTopics*100) : 0;
+document.getElementById('overallPct').textContent = pct + '%';
+const circumference = 2 * Math.PI * 26;
+const offset = circumference - (pct/100 * circumference);
+document.getElementById('progressCircle').style.strokeDashoffset = offset;
+
+if(pct === 100) {
+  document.getElementById('progressDesc').innerHTML = '🏆 Alle Themen gemeistert!<br>Du bist bereit für die nächste Klasse! 💛';
+  // Confetti
+  const colors = ['#f5a623','#e83e4a','#2ecc71','#3498db','#9b59b6'];
+  for(let i=0;i<30;i++){
     const c=document.createElement('div');c.className='confetti-piece';
-    c.style.cssText=`left:${Math.random()*100}vw;top:-10px;background:${colors[Math.floor(Math.random()*colors.length)]};animation-duration:${2+Math.random()*2}s;animation-delay:${Math.random()*1}s;`;
-    document.body.appendChild(c);setTimeout(()=>c.remove(),5000);
+    c.style.cssText=`left:${Math.random()*100}vw;top:-10px;background:${colors[Math.floor(Math.random()*colors.length)]};animation-duration:${1.5+Math.random()*2}s;animation-delay:${Math.random()*.8}s;`;
+    document.body.appendChild(c);setTimeout(()=>c.remove(),4000);
   }
-}, 500);
+} else if(pct > 0) {
+  document.getElementById('progressDesc').innerHTML = `${pct}% geschafft — weiter so!<br>Du wirst jeden Tag stärker. 💪`;
+}
 </script>
 </body>
 </html>
