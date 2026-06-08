@@ -1263,7 +1263,7 @@ function selectQuizOption(chosen,q){
     document.getElementById('scoreCorrect').textContent=correct;
     showFeedback(true,q.affirmation,'');spawnConfetti();
   } else {
-    opts[chosen].className='quiz-option opt-wrong';opts[q.correct].className='quiz-option opt-missed';wrong++;
+    opts[chosen].className='quiz-option opt-wrong';if(opts[q.correct])opts[q.correct].className='quiz-option opt-missed';wrong++;
     document.getElementById('scoreWrong').textContent=wrong;
     showFeedback(false,q.wrongMsg,'');
   }
@@ -1272,7 +1272,7 @@ function selectQuizOption(chosen,q){
 function autoFailQuiz(q){
   if(answered)return;answered=true;wrong++;document.getElementById('scoreWrong').textContent=wrong;
   const opts=document.getElementById('quizOptions').children;
-  Array.from(opts).forEach((btn,i)=>{btn.disabled=true;if(i===q.correct)btn.className='quiz-option opt-missed';});
+  Array.from(opts).forEach((btn,i)=>{btn.disabled=true;if(i===q.correct&&opts[i])btn.className='quiz-option opt-missed';});
   showFeedback(false,'⏱️ Zeit abgelaufen! '+q.wrongMsg,'');
   document.getElementById('btnNextRow').style.display='flex';
 }
